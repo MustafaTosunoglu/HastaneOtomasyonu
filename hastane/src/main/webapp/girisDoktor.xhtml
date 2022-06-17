@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<link rel="stylesheet" href="style1.css" />
+</h:head>
+<body background="background.jpg">
+	<div id="social">
+		<font id="font">Özel MTR Hastanesi |<span>SAĞLIKLI KALIN
+				SAĞLICAKLA KALIN</span></font>
+				<a href="giris.xhtml"><i class="fa fa-home"></i> </a>
+	</div>
+	<h:form id="LoginForm">
+		<p:panelGrid id="LoginPanelGrid" columns="2"
+			style="margin:auto;margin-top:10%" styleClass="ui-noborder">
+			<f:facet name="header">Giriş Formu</f:facet>
+			<h:outputLabel for="doktorAdi" value="Doktor Adı: *" />
+			<p:inputText id="doktorAdi" value="#{doktorGirisBean.doktorAdi}"
+				required="true" requiredMessage="Doktor adı giriniz"
+				label="Doktor Adı" />
+			<p:message for="doktorAdi" />
+			<br />
+			<h:outputLabel for="doktorSifre" value="Şifre: *" />
+			<p:password id="doktorSifre" value="#{doktorGirisBean.doktorSifre}"
+				required="true" requiredMessage="Şifre giriniz" label="Şifre" />
+			<p:message for="doktorSifre" />
+			<br />
+
+			<f:facet name="footer">
+				<center>
+					<p:commandButton type="submit"
+						action="#{doktorGirisBean.girisDoktor()}" update="LoginForm"
+						value="Giriş" icon="ui-icon-check" style="margin:0" />
+				</center>
+			</f:facet>
+		</p:panelGrid>
+	</h:form>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head><link rel="stylesheet" href="style1.css" /></h:head>
+<body background="background.jpg">
+<div id="social">
+		<font id="font">Özel MTR Hastanesi |<span>SAĞLIKLI KALIN
+				SAĞLICAKLA KALIN</span></font>
+				<a href="giris.xhtml"><i class="fa fa-home"></i> </a>
+	</div>
+	<center>
+		<h:panelGrid  columns="2" cellspacing="350" cellpadding="10"
+			columnClasses="tab100px,tab200px" >
+
+			<p:panel id="panel">
+				<b>Admin Ekranı</b>
+				<i>Kullanıcı Ekle</i>
+				<h:form id="KullaniciEkle">
+					<p:growl id="growl" showDetail="true" />
+					<p:panelGrid columns="2" styleClass="ui-noborder" >
+						<i>Kullanıcı Adı</i>
+						<p:inputText id="kullaniciAdi" value="#{kullaniciEkleBean.kullaniciAdi}"
+							required="true" requiredMessage="Kullanıcı adı giriniz" 
+							label="Kullanıcı Adı" />
+						<i>Şifre</i>
+						<p:password id="feedback" placeholder="Password"
+							value="#{kullaniciEkleBean.kullaniciSifre}" required="true" requiredMessage="Şifre giriniz" feedback="true" />
+						<i>E-mail</i>
+						<span class="ui-input-icon-left"> <i class="pi pi-search" />
+							<p:inputText placeholder="E-Mail" required="true" requiredMessage="Mail Adresini giriniz"
+								value="#{kullaniciEkleBean.kullaniciMail}" />
+						</span>
+						<i>Kullanıcı Yetkisi</i>
+						<p:selectOneMenu id="console" value="#{kullaniciEkleBean.kullaniciYetki}" >
+							<f:selectItem itemLabel="Admin" itemValue="A" />
+							<f:selectItem itemLabel="Kullanıcı" itemValue="K" />
+						</p:selectOneMenu>
+
+					</p:panelGrid>
+
+
+				</h:form>
+				<f:facet name="footer">
+					<center>
+						<p:commandButton value="Kaydet"
+							actionListener="#{kullaniciEkleBean.kullaniciEkle()}" process="panel"
+							update="panel" />
+					</center>
+				</f:facet>
+				
+			</p:panel>
+		</h:panelGrid>
+		
+		<h:form id="form">
+    <p:growl id="msgs" showDetail="true"/>
+    
+     <div class="card">
+        <p:dataTable id="kullanicilar" var="kullanici" value="#{kullaniciEkleBean.kullanicilar}" editable="true">
+
+            <p:ajax event="rowEdit" listener="#{kullaniciEkleBean.kullaniciGuncelle(kullanici)}" update=":form:msgs"/>
+
+            <p:column headerText="Kullanıcı Yetki">
+                <p:cellEditor>
+                	<f:facet name="output">
+	                	<p:selectOneMenu value="#{kullanici.kullaniciYetki}" disabled="true">
+								<f:selectItem itemLabel="Admin" itemValue="A" />
+								<f:selectItem itemLabel="Kullanıcı" itemValue="K" />
+						</p:selectOneMenu>
+					</f:facet>
+                    <f:facet name="input">
+	                    <p:selectOneMenu value="#{kullanici.kullaniciYetki}">
+							<f:selectItem itemLabel="Admin" itemValue="A" />
+							<f:selectItem itemLabel="Kullanıcı" itemValue="K" />
+						</p:selectOneMenu>
+					</f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Kullanıcı Adı">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{kullanici.kullaniciAdi}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText id="modelInput1" value="#{kullanici.kullaniciAdi}" style="width:100%"/>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+            
+            <p:column headerText="Kullanıcı Şifresi">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{kullanici.kullaniciSifre}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText id="modelInput2" value="#{kullanici.kullaniciSifre}" style="width:100%"/>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+            
+            <p:column headerText="Kullanıcı Mail">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{kullanici.kullaniciMail}"/>
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText id="modelInput3" value="#{kullanici.kullaniciMail}" style="width:100%"/>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            
+
+            <p:column style="width:6rem" headerText="Güncelle">
+                <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+            </p:column>
+        </p:dataTable>
+    </div>
+    
+    </h:form>
+	</center>
+</body>
+</html>

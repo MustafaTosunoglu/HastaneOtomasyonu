@@ -1,0 +1,62 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+<h:head><link rel="stylesheet"  href="style1.css"/></h:head>
+<body background="background.jpg">
+<div id="social">
+		<font id="font">Özel MTR Hastanesi |<span>SAĞLIKLI KALIN
+				SAĞLICAKLA KALIN</span></font>
+				<a href="giris.xhtml"><i class="fa fa-home"></i> </a>
+	</div>
+	<center>
+		<h:panelGrid columns="2" cellspacing="350" cellpadding="10"
+			columnClasses="tab100px,tab200px" >
+
+			<p:panel id="panel" style="-moz-border-radius: 15px; 
+-webkit-border-radius: 15px;">
+				<b>Admin Ekranı</b>
+				<i>Doktor Ekle</i>
+				<h:form id="DoktorEkle">
+					<p:growl id="growl" showDetail="true" />
+					<p:panelGrid columns="2" styleClass="ui-noborder" >
+						<i>Doktor Adı</i>
+						<p:inputText id="doktorAdi" value="#{doktorEkleBean.doktorAdi}"
+							required="true" requiredMessage="Doktor adı giriniz" 
+							label="Doktor Adı" />
+						<i>Doktor Soyadı</i>
+						<p:inputText id="doktorSoyadi" value="#{doktorEkleBean.doktorSoyadi}"
+							required="true" requiredMessage="Doktor soyadı giriniz" 
+							label="Doktor Soyadı" />	
+						<i>Şifre</i>
+						<p:password id="feedback" placeholder="Password"
+							value="#{doktorEkleBean.doktorSifre}" required="true" requiredMessage="Şifre giriniz" feedback="true" />
+						<i>E-mail</i>
+						<span class="ui-input-icon-left"> <i class="pi pi-search" />
+							<p:inputText placeholder="E-Mail" required="true" requiredMessage="Mail Adresini giriniz"
+								value="#{doktorEkleBean.doktorMail}" />
+						</span>
+
+					</p:panelGrid>
+
+
+				</h:form>
+				<f:facet name="footer">
+					<center>
+						<p:commandButton value="Kaydet"
+							actionListener="#{doktorEkleBean.doktorEkle()}" process="panel"
+							update="panel" />
+					</center>
+				</f:facet>
+				
+			</p:panel>
+		</h:panelGrid>
+	</center>
+
+</body>
+</html>

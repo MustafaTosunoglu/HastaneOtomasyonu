@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	        
+<h:head><link rel="stylesheet" href="style1.css" /></h:head>
+<body background="background.jpg">
+<div id="social">
+		<font id="font">Özel MTR Hastanesi |<span>SAĞLIKLI KALIN
+				SAĞLICAKLA KALIN</span></font>
+				<a href="giris.xhtml"><i class="fa fa-home"></i> </a>
+	</div>
+	<center>
+		<h:panelGrid columns="2" cellspacing="10" cellpadding="10"
+			columnClasses="tab100px,tab200px">
+	
+			<p:panel id="panel">
+				<b>Admin Ekranı</b>
+				<i>Doktor Uzmanlık Ekle</i>
+				<h:form id="DoktorUzmanlikEkle">
+				<p:growl id="growl" showDetail="true" />
+					<p:panelGrid columns="2">
+						<i>Doktor</i>
+						<p:selectOneMenu value="#{doktorUzmanlikEkleBean.secilenDoktor}">
+							<f:selectItem itemLabel="Doktor Seçiniz" itemValue="" />
+							<f:selectItems itemLabel="#{doktor.doktorAdi}" itemValue="#{doktor.doktorId}" var="doktor" value="#{doktorUzmanlikEkleBean.doktorlar}" />
+						</p:selectOneMenu>
+						<i>Uzmanlık</i>
+						<p:selectOneMenu value="#{doktorUzmanlikEkleBean.secilenUzmanlik}">
+							<f:selectItem itemLabel="Uzmanlık Seciniz" itemValue="" />
+							<f:selectItems itemLabel="#{uzmanlik.uzmanlikAdi}" itemValue="#{uzmanlik.uzmanlikId}" var="uzmanlik" value="#{doktorUzmanlikEkleBean.uzmanliklar}" />
+						</p:selectOneMenu>
+					</p:panelGrid>
+				</h:form>
+				<f:facet name="footer">
+					<center><p:commandButton value="Kaydet" actionListener="#{doktorUzmanlikEkleBean.kaydet()}" process="panel" update="panel" /></center>
+				</f:facet>
+			</p:panel>
+		</h:panelGrid>
+	</center>
+</body>
+</html>
+
+
+
+

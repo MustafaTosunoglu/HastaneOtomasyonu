@@ -1,0 +1,75 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head><link rel="stylesheet" href="style1.css" /></h:head>
+<body background="background.jpg">
+<div id="social">
+		<font id="font">Özel MTR Hastanesi |<span>SAĞLIKLI KALIN
+				SAĞLICAKLA KALIN</span></font>
+				<a href="giris.xhtml"><i class="fa fa-home"></i> </a>
+	</div>
+	<center>
+		<h:panelGrid columns="2" cellspacing="350" cellpadding="10"
+			columnClasses="tab100px,tab200px" >
+
+			<p:panel id="panel">
+				<b>Admin Ekranı</b>
+				<i>Hasta Ekle</i>
+				<h:form id="HastaEkle">
+					<p:growl id="growl" showDetail="true" />
+					<p:panelGrid columns="2" styleClass="ui-noborder" >
+						<i>Hasta TC Numarası</i>
+						<p:inputText id="hastaTC" value="#{hastaEkleBean.hastaTC}"
+							required="true" requiredMessage="Hasta TC numarasını giriniz" 
+							label="Hasta TC Numarası" />
+						<i>Hasta Adı</i>
+						<p:inputText id="hastaAdi" value="#{hastaEkleBean.hastaAdi}"
+							required="true" requiredMessage="Hasta adı giriniz" 
+							label="Hasta Adı" />
+						<i>Hasta Soyadı</i>
+						<p:inputText id="hastaSoyadi" value="#{hastaEkleBean.hastaSoyadi}"
+							required="true" requiredMessage="Hasta soyadı giriniz" 
+							label="Hasta Soyadı" />	
+						<i>Hasta Cinsiyeti</i>
+						<p:selectOneMenu id="console" value="#{hastaEkleBean.hastaCinsiyet}" >
+							<f:selectItem itemLabel="Kadın" itemValue="K" />
+							<f:selectItem itemLabel="Erkek" itemValue="E" />
+						</p:selectOneMenu>
+						<i>Hasta Telefon Numarası</i>
+						<p:inputText id="hastaTel" value="#{hastaEkleBean.hastaTel}"
+							required="true" requiredMessage="Hasta telefon numarasını giriniz"  placeholder="(+90)" 
+							label="Hasta Telefon Numarası" />
+						<i>Hasta Doğum Tarihi</i>
+						<p:inputText id="hastaDogumTarihi" value="#{hastaEkleBean.hastaDogumTarihi}"
+							required="true" requiredMessage="GG/AA/YYYY" 
+							placeholder="GG/AA/YYYY" 
+							label="Hasta Doğum Tarihi" />	
+						<i>Doktor</i>
+						<p:selectOneMenu value="#{hastaEkleBean.secilenDoktor}">
+							<f:selectItem itemLabel="Doktor Seçiniz" itemValue="" />
+							<f:selectItems itemLabel="#{doktor.doktorAdi}" itemValue="#{doktor.doktorId}" var="doktor" value="#{hastaEkleBean.doktorlar}" />
+						</p:selectOneMenu>
+							
+
+					</p:panelGrid>
+
+
+				</h:form>
+				<f:facet name="footer">
+					<center>
+						<p:commandButton value="Kaydet"
+							actionListener="#{hastaEkleBean.hastaEkle()}" process="panel"
+							update="panel" />
+					</center>
+				</f:facet>
+				
+			</p:panel>
+		</h:panelGrid>
+	</center>
+</body>
+</html>

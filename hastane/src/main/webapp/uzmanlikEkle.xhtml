@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet" href="style1.css" />
+</h:head>
+<body background="background.jpg" >
+<div id="social">
+		<font id="font">Özel MTR Hastanesi |<span>SAĞLIKLI KALIN
+				SAĞLICAKLA KALIN</span></font>
+				<a href="giris.xhtml"><i class="fa fa-home"></i> </a>
+	</div>
+	<center>
+	<h:panelGrid columns="2" cellspacing="10" cellpadding="10"
+		columnClasses="tab100px,tab200px">
+
+		<p:panel id="panel">
+			<i>Uzmanlık Alanı Ekle</i>
+			<h:form id="UzmanlikEkle">
+			<p:growl id="growl" showDetail="true" />
+				<p:panelGrid columns="2">
+					<i>Uzmanlık Tipi</i>
+					<p:inputText id="uzmanlik" value="#{UzmanlikEkleBean.uzmanlik}" required="true" requiredMessage="Uzmanlık Alanı Giriniz" label="Uzmanlık" />
+				</p:panelGrid>
+
+
+			</h:form>
+			<f:facet name="footer">
+				<center><p:commandButton value="Kaydet" actionListener="#{UzmanlikEkleBean.uzmanlikEkle()}" process="panel" update="panel" /></center>
+			</f:facet>
+		</p:panel>
+	</h:panelGrid>
+	</center>
+</body>
+</html>
